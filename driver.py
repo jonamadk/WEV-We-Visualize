@@ -36,16 +36,14 @@ def data_map_visual():
     data_df = dataset_reader(1000)
     
     map_df = pd.DataFrame()
-    map_df['Longitude'] = data_df['Longitude']
-    map_df['Latitude'] = data_df['Latitude']
+    map_df['longitude'] = data_df['Longitude']
+    map_df['latitude'] = data_df['Latitude']
     map_df['Injured person'] = data_df['Number of persons injured']
     map_df['Injured person'] = map_df['Injured person']
-    
-    
     st.subheader("No of injured persons map visuals")
-    person_injured = st.slider(" No of injured Persons", 1,50)
-    print(type(person_injured))
-    st.map(map_df.query("Injured person >= @persons_injured")[["Longitude", "Latitude"]].dropna(how='any'))
+    person_injured = st.slider(" No of injured Persons", 1,20)
+    df = map_df[(map_df["Injured person"] >= person_injured)]
+    st.map(df)
 data_map_visual()
 
 
