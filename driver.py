@@ -5,7 +5,6 @@ import pandas as pd
 import json
 
 
-
 def main_page_info():
     st.header("Motor  Vehicle Collision Data Visual of Newyork.")
     st.markdown("This is streamlit dashboard for motor vehicle collision in Newyork City 🗽 ")
@@ -22,7 +21,7 @@ def dataset_reader(nrows):
     return dataframe
 
 
-
+# @st.cache(persist=True)
 def raw_data_visual():
     data_df = dataset_reader(100)
     if st.checkbox("DataFrame", False):
@@ -42,7 +41,9 @@ def data_map_visual():
     map_df['Injured person'] = map_df['Injured person']
     st.subheader("No of injured persons map visuals")
     person_injured = st.slider(" No of injured Persons", 1,20)
+    
     df = map_df[(map_df["Injured person"] >= person_injured)]
+    # st.snow()
     st.map(df)
 data_map_visual()
 
